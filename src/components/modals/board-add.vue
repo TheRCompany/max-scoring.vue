@@ -8,9 +8,13 @@
           class="row"
           type="text"
           placeholder="Name your board"
-          v-model="board.name"
+          v-model="board.title"
         />
-        <textarea class="row" placeholder="Description" v-model="board.desc">
+        <textarea
+          class="row"
+          placeholder="Description"
+          v-model="board.description"
+        >
         </textarea>
       </div>
       <button>Save</button>
@@ -23,12 +27,12 @@ export default {
   name: "board-add",
   data() {
     return {
-      board: { name: "", desc: "" }
+      board: { title: "", description: "" }
     };
   },
   methods: {
     reset() {
-      this.board = { name: "", desc: "" };
+      this.board = { title: "", description: "" };
     },
     hide() {
       this.$modal.hide("board-add");

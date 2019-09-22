@@ -22,8 +22,8 @@
           :key="board.id"
           @click="selectActive(board)"
         >
-          <h3>{{ board.name }}</h3>
-          <p>{{ board.desc }}</p>
+          <h3>{{ board.title }}</h3>
+          <p>{{ board.description }}</p>
         </div>
       </div>
     </div>
@@ -37,7 +37,6 @@
 <script>
 import { actionButton, blankstate } from "@/components/utils";
 import { boardAdd } from "@/components/modals";
-import store from "../store";
 
 export default {
   name: "Board",
@@ -52,20 +51,22 @@ export default {
   computed: {
     boards: {
       get() {
-        return store.state.boards;
+        return this.$store.state.boards;
       },
       set(value) {
-        // put here call to retrieve available board
-        store.commit("setBoards", value);
+        this.$store.commit("setBoards", value);
       }
     }
   },
+  mounted() {
+    this.$store.dispatch("loadBoards");
+  },
   methods: {
     create(board) {
-      store.commit("addBoard", board);
+      this.$store.dispatch("addBoard", board);
     },
     selectActive(board) {
-      store.commit("activeBoard", board);
+      this.$store.commit("activeBoard", board);
     }
   }
 };
@@ -108,6 +109,7 @@ export default {
 .board-tile h3 {
   color: white;
   font-weight: 600;
+  width: 100%;
 }
 
 .board-tile p {

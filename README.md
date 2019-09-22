@@ -27,3 +27,13 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+## production environment
+
+```
+VUE_APP_I18N_LOCALE=en
+VUE_APP_I18N_FALLBACK_LOCALE=en
+ROOT_API=https://your-root.api
+```
+

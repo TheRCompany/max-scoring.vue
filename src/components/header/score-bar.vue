@@ -2,13 +2,13 @@
   <div class="header" :class="{ dark: dark }">
     <div class="header-container">
       <div class="item">
-        <h3 class="title" v-if="!editMode">{{ board.name }}</h3>
+        <h3 class="title" v-if="!editMode">{{ board.title }}</h3>
 
         <input
           class="edit"
           type="text"
           v-if="editMode"
-          v-model="board.name"
+          v-model="board.title"
           v-on:keyup.enter="edit(board)"
         />
 
@@ -44,8 +44,8 @@ export default {
   props: {
     board: {
       id: String,
-      name: String,
-      desc: String
+      title: String,
+      description: String
     },
     dark: Boolean
   },

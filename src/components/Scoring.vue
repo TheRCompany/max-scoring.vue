@@ -61,7 +61,6 @@ export default {
         return store.state.list;
       },
       set(value) {
-        // put here call to retrieve scoring list
         store.commit("setList", value);
       }
     }
