@@ -4,7 +4,7 @@
     :style="{
       top: position && position.top + 'px',
       right: position && position.right + 'px',
-      width: position && position.width + 'px'
+      width: position && position.width + 'px',
     }"
     :class="{ '-open': open, dark: dark }"
   >
@@ -14,16 +14,16 @@
 
 <script>
 export default {
-  name: "dropdown",
+  name: 'dropdown',
   props: {
     dark: Boolean,
     open: Boolean,
     position: {
       top: Number,
       right: Number,
-      width: Number
-    }
-  }
+      width: Number,
+    },
+  },
 };
 </script>
 

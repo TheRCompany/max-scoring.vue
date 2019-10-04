@@ -4,13 +4,7 @@
       <div class="item">
         <h3 class="title" v-if="!editMode">{{ board.title }}</h3>
 
-        <input
-          class="edit"
-          type="text"
-          v-if="editMode"
-          v-model="board.title"
-          v-on:keyup.enter="edit(board)"
-        />
+        <input class="edit" type="text" v-if="editMode" v-model="board.title" v-on:keyup.enter="edit(board)" />
 
         <div class="icon" v-if="!editMode" @click="editMode = true">
           <img src="@/assets/icon/pencil.svg" />
@@ -37,32 +31,30 @@
 </template>
 
 <script>
-import store from "@/store";
-
 export default {
-  name: "score-bar",
+  name: 'score-bar',
   props: {
     board: {
       id: String,
       title: String,
-      description: String
+      description: String,
     },
-    dark: Boolean
+    dark: Boolean,
   },
   data() {
     return {
-      editMode: false
+      editMode: false,
     };
   },
   methods: {
     edit(board) {
       this.editMode = false;
-      store.commit("editActiveBoard", board);
+      this.$store.commit('editActiveBoard', board);
     },
     close() {
-      store.commit("closeBoard");
-    }
-  }
+      this.$store.commit('closeBoard');
+    },
+  },
 };
 </script>
 
@@ -79,7 +71,7 @@ export default {
 }
 
 .item + .item {
-  content: "";
+  content: '';
   border-left: 1px solid darkgray;
 }
 
@@ -117,8 +109,7 @@ export default {
   width: 100%;
   height: 100%;
   /* darkgray color */
-  filter: invert(73%) sepia(8%) saturate(14%) hue-rotate(359deg) brightness(90%)
-    contrast(93%);
+  filter: invert(73%) sepia(8%) saturate(14%) hue-rotate(359deg) brightness(90%) contrast(93%);
 }
 
 .icon:hover {

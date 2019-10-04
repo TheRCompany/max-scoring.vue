@@ -12,46 +12,44 @@
 </template>
 
 <script>
-import { topBar, topLine } from "@/components/header";
-import Board from "@/components/Board.vue";
-import Scoring from "@/components/Scoring.vue";
-
-import store from "./store";
+import { topBar, topLine } from '@/components/header';
+import Board from '@/components/Board.vue';
+import Scoring from '@/components/Scoring.vue';
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
     topBar,
     topLine,
     Board,
-    Scoring
+    Scoring,
   },
   computed: {
     dark: {
       get() {
-        return store.state.dark;
-      }
+        return this.$store.state.dark;
+      },
     },
     activeBoard: {
       get() {
-        return store.state.activeBoard;
-      }
-    }
+        return this.$store.state.activeBoard;
+      },
+    },
   },
   methods: {
     toggleDark() {
-      store.commit("toggleDark");
+      this.$store.commit('toggleDark');
     },
     closeBoard() {
-      store.commit("closeBoard");
-    }
-  }
+      this.$store.commit('closeBoard');
+    },
+  },
 };
 </script>
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 

@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="item"
-    :class="{ dark: dark }"
-    :style="{ borderTopColor: item.color }"
-  >
+  <div class="item" :class="{ dark: dark }" :style="{ borderTopColor: item.color }">
     <div class="container">
       <div class="score" :style="{ background: item.color }">
         {{ item.score }}
@@ -29,11 +25,11 @@
 </template>
 
 <script>
-import { dropdown } from "@/components/utils";
+import { dropdown } from '@/components/utils';
 export default {
-  name: "item",
+  name: 'item',
   components: {
-    dropdown
+    dropdown,
   },
   props: {
     dark: Boolean,
@@ -41,19 +37,19 @@ export default {
       title: String,
       desc: String,
       score: String | Number,
-      color: String
-    }
+      color: String,
+    },
   },
   data() {
     return {
-      openSideMenu: false
+      openSideMenu: false,
     };
   },
   methods: {
     toggleSideMenu() {
       this.openSideMenu = !this.openSideMenu;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -4,12 +4,7 @@
     <div class="container">
       <h2>Pick a color</h2>
       <div class="palette">
-        <div
-          class="color"
-          v-for="color in colors"
-          :key="color"
-          @click="select(color)"
-        >
+        <div class="color" v-for="color in colors" :key="color" @click="select(color)">
           <div class="preview" v-bind:style="{ background: color }"></div>
         </div>
       </div>
@@ -19,25 +14,25 @@
 
 <script>
 export default {
-  name: "color-picker",
+  name: 'color-picker',
   methods: {
     beforeOpen(event) {
       this.item = event.params.item;
     },
     hide() {
-      this.$modal.hide("color-picker");
+      this.$modal.hide('color-picker');
     },
     select(color) {
-      this.$emit("update", { ...this.item, color });
+      this.$emit('update', { ...this.item, color });
       this.hide();
-    }
+    },
   },
   data() {
     return {
       item: null,
-      colors: ["#d11141", "#f37735", "#ffc425", "#00b159", "#00aedb"]
+      colors: ['#d11141', '#f37735', '#ffc425', '#00b159', '#00aedb'],
     };
-  }
+  },
 };
 </script>
 
@@ -58,7 +53,7 @@ export default {
 .close:after {
   position: absolute;
   left: 15px;
-  content: " ";
+  content: ' ';
   height: 33px;
   width: 2px;
   background-color: #333;

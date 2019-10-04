@@ -1,23 +1,21 @@
 <template>
   <div class="topline">
     <a class="nav">Login/Logout</a>
-    <span class="nav">{{ $t("top.language") }}:</span>
+    <span class="nav">{{ $t('top.language') }}:</span>
     <select class="lang" v-model="$i18n.locale">
-      <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{
-        lang
-      }}</option>
+      <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
     </select>
   </div>
 </template>
 
 <script>
 export default {
-  name: "top-line",
+  name: 'top-line',
   data() {
     return {
-      langs: ["en", "fr"]
+      langs: ['en', 'fr'],
     };
-  }
+  },
 };
 </script>
 
@@ -41,7 +39,7 @@ export default {
 }
 
 .nav + .nav {
-  content: "";
+  content: '';
   border-left: 1px solid white;
 }
 

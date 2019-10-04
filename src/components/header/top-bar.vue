@@ -18,26 +18,26 @@
 </template>
 
 <script>
-import { dropdown } from "@/components/utils";
+import { dropdown } from '@/components/utils';
 export default {
-  name: "top-bar",
+  name: 'top-bar',
   components: {
-    dropdown
+    dropdown,
   },
   props: {
     title: String,
-    dark: Boolean
+    dark: Boolean,
   },
   data() {
     return {
-      openMenu: false
+      openMenu: false,
     };
   },
   methods: {
     toggleMenu() {
       this.openMenu = !this.openMenu;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -72,8 +72,7 @@ export default {
 
 .icon img {
   /* darkgray color */
-  filter: invert(73%) sepia(8%) saturate(14%) hue-rotate(359deg) brightness(90%)
-    contrast(93%);
+  filter: invert(73%) sepia(8%) saturate(14%) hue-rotate(359deg) brightness(90%) contrast(93%);
 }
 
 .icon:hover {
