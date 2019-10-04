@@ -7,21 +7,16 @@
       :img="require('@/assets/board_blank.svg')"
     >
       <action-button @click="$modal.show('board-add')">
-        {{ $t("board.new_board") }}
+        {{ $t('board.new_board') }}
       </action-button>
     </blankstate>
 
     <div class="container" v-else>
       <action-button @click="$modal.show('board-add')">
-        {{ $t("board.add_board") }}
+        {{ $t('board.add_board') }}
       </action-button>
       <div class="board-list">
-        <div
-          class="board-tile"
-          v-for="board in boards"
-          :key="board.id"
-          @click="selectActive(board)"
-        >
+        <div class="board-tile" v-for="board in boards" :key="board.id" @click="selectActive(board)">
           <h3>{{ board.title }}</h3>
           <p>{{ board.description }}</p>
         </div>
@@ -35,18 +30,18 @@
 </template>
 
 <script>
-import { actionButton, blankstate } from "@/components/utils";
-import { boardAdd } from "@/components/modals";
+import { actionButton, blankstate } from '@/components/utils';
+import { boardAdd } from '@/components/modals';
 
 export default {
-  name: "Board",
+  name: 'Board',
   components: {
     actionButton,
     blankstate,
-    boardAdd
+    boardAdd,
   },
   props: {
-    dark: Boolean
+    dark: Boolean,
   },
   computed: {
     boards: {
@@ -54,21 +49,21 @@ export default {
         return this.$store.state.boards;
       },
       set(value) {
-        this.$store.commit("setBoards", value);
-      }
-    }
+        this.$store.commit('setBoards', value);
+      },
+    },
   },
   mounted() {
-    this.$store.dispatch("loadBoards");
+    this.$store.dispatch('loadBoards');
   },
   methods: {
     create(board) {
-      this.$store.dispatch("addBoard", board);
+      this.$store.dispatch('addBoard', board);
     },
     selectActive(board) {
-      this.$store.commit("activeBoard", board);
-    }
-  }
+      this.$store.commit('activeBoard', board);
+    },
+  },
 };
 </script>
 

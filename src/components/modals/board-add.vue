@@ -4,18 +4,8 @@
     <form class="container" @submit.prevent="submit">
       <h2>Add a new board</h2>
       <div>
-        <input
-          class="row"
-          type="text"
-          placeholder="Name your board"
-          v-model="board.title"
-        />
-        <textarea
-          class="row"
-          placeholder="Description"
-          v-model="board.description"
-        >
-        </textarea>
+        <input class="row" type="text" placeholder="Name your board" v-model="board.title" />
+        <textarea class="row" placeholder="Description" v-model="board.description"> </textarea>
       </div>
       <button>Save</button>
     </form>
@@ -24,24 +14,24 @@
 
 <script>
 export default {
-  name: "board-add",
+  name: 'board-add',
   data() {
     return {
-      board: { title: "", description: "" }
+      board: { title: '', description: '' },
     };
   },
   methods: {
     reset() {
-      this.board = { title: "", description: "" };
+      this.board = { title: '', description: '' };
     },
     hide() {
-      this.$modal.hide("board-add");
+      this.$modal.hide('board-add');
     },
     submit() {
-      this.$emit("save", this.board);
+      this.$emit('save', this.board);
       this.hide();
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -62,7 +52,7 @@ export default {
 .close:after {
   position: absolute;
   left: 15px;
-  content: " ";
+  content: ' ';
   height: 33px;
   width: 2px;
   background-color: #333;
@@ -109,7 +99,7 @@ button {
   box-sizing: border-box;
   padding: 10px;
   letter-spacing: 1px;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   color: #8b8c8d;
   cursor: pointer;

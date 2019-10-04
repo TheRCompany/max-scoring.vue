@@ -11,12 +11,12 @@
 
 <script>
 export default {
-  name: "Blankstate",
+  name: 'Blankstate',
   props: {
     title: String,
     desc: String,
-    img: String
-  }
+    img: String,
+  },
 };
 </script>
 

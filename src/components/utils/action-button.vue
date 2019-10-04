@@ -6,13 +6,13 @@
 
 <script>
 export default {
-  name: "action-button",
+  name: 'action-button',
   props: {
     type: {
       type: String,
-      default: "primary"
-    }
-  }
+      default: 'primary',
+    },
+  },
 };
 </script>
 

@@ -1,10 +1,5 @@
 <template>
-  <modal
-    name="item-add-edit"
-    @before-open="init"
-    @before-close="reset"
-    :adaptive="true"
-  >
+  <modal name="item-add-edit" @before-open="init" @before-close="reset" :adaptive="true">
     <div class="close" @click="hide()"></div>
     <form class="container" @submit.prevent="submit">
       <h2 v-if="!editMode">Add a new item</h2>
@@ -12,16 +7,9 @@
       <div>
         <div class="row">
           <input type="text" placeholder="Title" v-model="item.title" />
-          <input
-            type="number"
-            min="0"
-            max="100"
-            placeholder="Score"
-            v-model="item.score"
-          />
+          <input type="number" min="0" max="100" placeholder="Score" v-model="item.score" />
         </div>
-        <textarea class="row" placeholder="Description" v-model="item.desc">
-        </textarea>
+        <textarea class="row" placeholder="Description" v-model="item.desc"> </textarea>
       </div>
       <button>Save</button>
     </form>
@@ -30,11 +18,11 @@
 
 <script>
 export default {
-  name: "item-add-edit",
+  name: 'item-add-edit',
   data() {
     return {
-      item: { title: "", desc: "", score: null },
-      editMode: false
+      item: { title: '', desc: '', score: null },
+      editMode: false,
     };
   },
   methods: {
@@ -45,18 +33,18 @@ export default {
       }
     },
     reset() {
-      this.item = { title: "", desc: "", score: null };
+      this.item = { title: '', desc: '', score: null };
       this.editMode = false;
     },
     hide() {
-      this.$modal.hide("item-add-edit");
+      this.$modal.hide('item-add-edit');
     },
     submit() {
-      this.$emit("save", this.item, this.editMode);
+      this.$emit('save', this.item, this.editMode);
       this.editMode = false;
       this.hide();
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -77,7 +65,7 @@ export default {
 .close:after {
   position: absolute;
   left: 15px;
-  content: " ";
+  content: ' ';
   height: 33px;
   width: 2px;
   background-color: #333;
@@ -117,10 +105,10 @@ textarea {
   transition: 0.5s all;
   outline: none;
 }
-input[type="text"] {
+input[type='text'] {
   width: 70%;
 }
-input[type="number"] {
+input[type='number'] {
   width: 20%;
 }
 
@@ -130,7 +118,7 @@ button {
   box-sizing: border-box;
   padding: 10px;
   letter-spacing: 1px;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   color: #8b8c8d;
   cursor: pointer;

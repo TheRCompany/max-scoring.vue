@@ -1,13 +1,7 @@
 <template>
   <div class="scoring">
     <score-bar :dark="dark" :board="board"></score-bar>
-    <draggable
-      class="list"
-      v-model="list"
-      group="score"
-      @start="drag = true"
-      @end="drag = false"
-    >
+    <draggable class="list" v-model="list" group="score" @start="drag = true" @end="drag = false">
       <div v-for="item in list" :key="item.id">
         <item :dark="dark" :item="item">
           <button @click="$modal.show('item-preview', { item })">
@@ -31,52 +25,51 @@
 </template>
 
 <script>
-import draggable from "vuedraggable";
-import { scoreBar } from "@/components/header";
-import { item } from "@/components/list";
-import { colorPicker, itemAddEdit, itemPreview } from "@/components/modals";
-import store from "../store";
+import draggable from 'vuedraggable';
+import { scoreBar } from '@/components/header';
+import { item } from '@/components/list';
+import { colorPicker, itemAddEdit, itemPreview } from '@/components/modals';
 
 export default {
-  name: "Scoring",
+  name: 'Scoring',
   components: {
     draggable,
     item,
     colorPicker,
     itemAddEdit,
     itemPreview,
-    scoreBar
+    scoreBar,
   },
   props: {
     board: {
       id: String,
       name: String,
-      desc: String
+      desc: String,
     },
-    dark: Boolean
+    dark: Boolean,
   },
   computed: {
     list: {
       get() {
-        return store.state.list;
+        return this.$store.state.list;
       },
       set(value) {
-        store.commit("setList", value);
-      }
-    }
+        this.$store.commit('setList', value);
+      },
+    },
   },
   methods: {
     addEditList(item, isEdit) {
-      const type = isEdit ? "updateItem" : "addItem";
-      store.commit(type, item);
+      const type = isEdit ? 'updateItem' : 'addItem';
+      this.$store.commit(type, item);
     },
     removeList(item) {
-      store.commit("removeItem", item);
+      this.$store.commit('removeItem', item);
     },
     updateColor(item) {
-      store.commit("updateItemColor", item);
-    }
-  }
+      this.$store.commit('updateItemColor', item);
+    },
+  },
 };
 </script>
 

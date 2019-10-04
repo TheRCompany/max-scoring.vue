@@ -1,7 +1,7 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import VModal from "vue-js-modal";
-import axios from "axios";
+import Vue from 'vue';
+import Vuex from 'vuex';
+import VModal from 'vue-js-modal';
+import axios from 'axios';
 
 Vue.use(Vuex);
 Vue.use(VModal);
@@ -11,18 +11,16 @@ export default new Vuex.Store({
     dark: false,
     boards: [],
     activeBoard: null,
-    list: []
+    list: [],
   },
   actions: {
     loadBoards({ commit }) {
-      axios.get("/boards").then(({ data }) => commit("setBoards", data.data));
+      axios.get('/boards').then(({ data }) => commit('setBoards', data.data));
     },
     addBoard({ commit }, board) {
       const { title, description } = board;
-      axios
-        .post(`/boards`, { title, description })
-        .then(({ data }) => commit("addBoard", data));
-    }
+      axios.post(`/boards`, { title, description }).then(({ data }) => commit('addBoard', data));
+    },
   },
   mutations: {
     // board part
@@ -70,6 +68,6 @@ export default new Vuex.Store({
     // setting part
     toggleDark(state) {
       state.dark = !state.dark;
-    }
-  }
+    },
+  },
 });
