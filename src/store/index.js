@@ -17,6 +17,9 @@ export default new Vuex.Store({
     loadBoards({ commit }) {
       axios.get('/boards').then(({ data }) => commit('setBoards', data.data));
     },
+    loadBoard({ commit }, id) {
+      axios.get(`/boards/${id}`).then(({ data }) => commit('activeBoard', data));
+    },
     addBoard({ commit }, board) {
       const { title, description } = board;
       axios.post(`/boards`, { title, description }).then(({ data }) => commit('addBoard', data));

@@ -1,5 +1,5 @@
 <template>
-  <div class="scoring">
+  <div class="scoring" v-if="board">
     <score-bar :dark="dark" :board="board"></score-bar>
 
     <draggable class="list" v-model="list" group="score" @start="drag = true" @end="drag = false">
@@ -60,6 +60,12 @@ export default {
         this.$store.commit('setList', value);
       },
     },
+  },
+  mounted() {
+    if (!this.board) {
+      const id = this.$route.params.id;
+      this.$store.dispatch('loadBoard', id);
+    }
   },
   methods: {
     addEditList(item, isEdit) {
