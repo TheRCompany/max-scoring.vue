@@ -40,9 +40,6 @@ export default {
     blankstate,
     boardAdd,
   },
-  props: {
-    dark: Boolean,
-  },
   computed: {
     boards: {
       get() {
@@ -50,6 +47,11 @@ export default {
       },
       set(value) {
         this.$store.commit('setBoards', value);
+      },
+    },
+    dark: {
+      get() {
+        return this.$store.state.dark;
       },
     },
   },
@@ -62,6 +64,7 @@ export default {
     },
     selectActive(board) {
       this.$store.commit('activeBoard', board);
+      this.$router.push({ name: 'scoring', params: { id: board.id } });
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="topline">
-    <a class="nav">Login/Logout</a>
+    <router-link to="/" class="nav">Login/Logout</router-link>
     <span class="nav">{{ $t('top.language') }}:</span>
     <select class="lang" v-model="$i18n.locale">
       <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>

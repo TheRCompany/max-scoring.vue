@@ -1,9 +1,9 @@
 <template>
   <div class="header" :class="{ dark: dark }">
     <div class="header-container">
-      <div class="icon" @click="$emit('home')">
+      <router-link :to="{ name: 'boards' }" class="icon" @click="$emit('home')">
         <img src="@/assets/icon/home.svg" />
-      </div>
+      </router-link>
 
       <h1 class="center">{{ title }}</h1>
 

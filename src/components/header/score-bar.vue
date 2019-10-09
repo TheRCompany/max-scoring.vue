@@ -22,9 +22,9 @@
       </div>
 
       <div class="item">
-        <div class="icon" @click="close()">
+        <router-link :to="{ name: 'boards' }" class="icon" @click="close()">
           <img src="@/assets/icon/cancel.svg" />
-        </div>
+        </router-link>
       </div>
     </div>
   </div>

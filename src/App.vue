@@ -6,33 +6,23 @@
       <button>Settings</button>
     </top-bar>
 
-    <Board v-if="!activeBoard" :dark="dark" />
-    <Scoring v-else :board="activeBoard" :dark="dark" />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import { topBar, topLine } from '@/components/header';
-import Board from '@/components/Board.vue';
-import Scoring from '@/components/Scoring.vue';
 
 export default {
   name: 'app',
   components: {
     topBar,
     topLine,
-    Board,
-    Scoring,
   },
   computed: {
     dark: {
       get() {
         return this.$store.state.dark;
-      },
-    },
-    activeBoard: {
-      get() {
-        return this.$store.state.activeBoard;
       },
     },
   },

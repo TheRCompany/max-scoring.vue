@@ -1,6 +1,7 @@
 <template>
   <div class="scoring">
     <score-bar :dark="dark" :board="board"></score-bar>
+
     <draggable class="list" v-model="list" group="score" @start="drag = true" @end="drag = false">
       <div v-for="item in list" :key="item.id">
         <item :dark="dark" :item="item">
@@ -40,15 +41,17 @@ export default {
     itemPreview,
     scoreBar,
   },
-  props: {
-    board: {
-      id: String,
-      name: String,
-      desc: String,
-    },
-    dark: Boolean,
-  },
   computed: {
+    dark: {
+      get() {
+        return this.$store.state.dark;
+      },
+    },
+    board: {
+      get() {
+        return this.$store.state.activeBoard;
+      },
+    },
     list: {
       get() {
         return this.$store.state.list;
