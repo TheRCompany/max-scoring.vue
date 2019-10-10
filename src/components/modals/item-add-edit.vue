@@ -9,7 +9,7 @@
           <input type="text" placeholder="Title" v-model="item.title" />
           <input type="number" min="0" max="100" placeholder="Score" v-model="item.score" />
         </div>
-        <textarea class="row" placeholder="Description" v-model="item.desc"> </textarea>
+        <textarea class="row" placeholder="Description" v-model="item.description"> </textarea>
       </div>
       <button>Save</button>
     </form>
@@ -21,7 +21,7 @@ export default {
   name: 'item-add-edit',
   data() {
     return {
-      item: { title: '', desc: '', score: null },
+      item: { title: '', description: '', score: null },
       editMode: false,
     };
   },
@@ -33,7 +33,7 @@ export default {
       }
     },
     reset() {
-      this.item = { title: '', desc: '', score: null };
+      this.item = { title: '', description: '', score: null };
       this.editMode = false;
     },
     hide() {

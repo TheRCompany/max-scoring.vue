@@ -18,7 +18,7 @@ export default {
   name: 'item-preview',
   data() {
     return {
-      item: { title: '', desc: '', score: null },
+      item: { title: '', description: '', score: null },
     };
   },
   methods: {
@@ -28,7 +28,7 @@ export default {
       }
     },
     reset() {
-      this.item = { title: '', desc: '', score: null };
+      this.item = { title: '', description: '', score: null };
     },
     hide() {
       this.$modal.hide('item-preview');

@@ -20,9 +20,16 @@ export default new Vuex.Store({
     loadBoard({ commit }, id) {
       axios.get(`/boards/${id}`).then(({ data }) => commit('activeBoard', data));
     },
+    loadCards({ commit }, boardId) {
+      axios.get(`/cards?boardId=${boardId}`).then(({ data }) => commit('setList', data.data));
+    },
     addBoard({ commit }, board) {
       const { title, description } = board;
       axios.post(`/boards`, { title, description }).then(({ data }) => commit('addBoard', data));
+    },
+    addCard({ commit }, { boardId, item }) {
+      const { title, description } = item;
+      axios.post(`/cards/`, { boardId, title, description }).then(({ data }) => commit('addItem', data));
     },
   },
   mutations: {
@@ -50,22 +57,24 @@ export default new Vuex.Store({
     setList(state, list) {
       state.list = list;
     },
-    addItem(state, { title, desc, score }) {
-      const id = `item-${state.list.length}`;
-      state.list.push({ title, desc, score, id });
+    addItem(state, { id, title, description, score }) {
+      state.list.push({ id, title, description, score });
     },
-    updateItem(state, { id, title, desc, score }) {
+    updateItem(state, { id, title, description, score }) {
       const item = state.list.find(item => item.id === id);
       const index = state.list.findIndex(item => item.id === id);
-      Vue.set(state.list, index, { ...item, title, desc, score });
+      Vue.set(state.list, index, { ...item, title, description, score });
+      axios.patch(`/cards/${id}`, { title, description, score });
     },
     updateItemColor(state, { id, color }) {
       const item = state.list.find(item => item.id === id);
       const index = state.list.findIndex(item => item.id === id);
       Vue.set(state.list, index, { ...item, color });
+      axios.patch(`/cards/${id}`, { color });
     },
     removeItem(state, item) {
       state.list.splice(state.list.indexOf(item), 1);
+      axios.delete(`/cards/${item.id}`);
     },
 
     // setting part

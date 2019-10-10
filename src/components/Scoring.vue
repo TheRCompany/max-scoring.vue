@@ -62,15 +62,16 @@ export default {
     },
   },
   mounted() {
+    const boardId = this.$route.params.id;
     if (!this.board) {
-      const id = this.$route.params.id;
-      this.$store.dispatch('loadBoard', id);
+      this.$store.dispatch('loadBoard', boardId);
     }
+    this.$store.dispatch('loadCards', boardId);
   },
   methods: {
     addEditList(item, isEdit) {
-      const type = isEdit ? 'updateItem' : 'addItem';
-      this.$store.commit(type, item);
+      const boardId = this.$route.params.id;
+      isEdit ? this.$store.commit('updateItem', item) : this.$store.dispatch('addCard', { boardId, item });
     },
     removeList(item) {
       this.$store.commit('removeItem', item);

@@ -6,7 +6,7 @@
       </div>
       <div class="content">
         <h3 class="title">{{ item.title }}</h3>
-        <p class="description">{{ item.desc }}</p>
+        <p class="description">{{ item.description }}</p>
       </div>
       <div class="side" @click.stop="toggleSideMenu()">
         <svg viewBox="0 0 24 24" class="icon">
@@ -35,7 +35,7 @@ export default {
     dark: Boolean,
     item: {
       title: String,
-      desc: String,
+      description: String,
       score: String | Number,
       color: String,
     },
