@@ -1,9 +1,8 @@
-import Vue from 'vue';
+import Board from '@/components/Board.vue';
+import Login from '@/components/Login.vue';
 import Router from 'vue-router';
-
-import Login from '@/components/Login';
-import Board from '@/components/Board';
-import Scoring from '@/components/Scoring';
+import Scoring from '@/components/Scoring.vue';
+import Vue from 'vue';
 
 Vue.use(Router);
 

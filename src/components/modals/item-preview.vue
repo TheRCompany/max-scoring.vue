@@ -1,5 +1,5 @@
 <template>
-  <modal name="item-preview" @before-open="init" @before-close="reset" :adaptive="true">
+  <modal name="item-preview" :adaptive="true" @before-open="init" @before-close="reset">
     <div class="close" @click="hide()"></div>
     <div class="container">
       <h2>Item preview</h2>
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'item-preview',
+  name: 'ItemPreview',
   data() {
     return {
       item: { title: '', desc: '', score: null },

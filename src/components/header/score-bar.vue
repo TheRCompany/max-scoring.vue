@@ -2,15 +2,15 @@
   <div class="header" :class="{ dark: dark }">
     <div class="header-container">
       <div class="item">
-        <h3 class="title" v-if="!editMode">{{ board.title }}</h3>
+        <h3 v-if="!editMode" class="title">{{ board.title }}</h3>
 
-        <input class="edit" type="text" v-if="editMode" v-model="board.title" v-on:keyup.enter="edit(board)" />
+        <input v-if="editMode" v-model="board.title" class="edit" type="text" @keyup.enter="edit(board)" />
 
-        <div class="icon" v-if="!editMode" @click="editMode = true">
+        <div v-if="!editMode" class="icon" @click="editMode = true">
           <img src="@/assets/icon/pencil.svg" />
         </div>
 
-        <div class="icon" v-if="editMode" @click="edit(board)">
+        <div v-if="editMode" class="icon" @click="edit(board)">
           <img src="@/assets/icon/checked.svg" />
         </div>
       </div>
@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: 'score-bar',
+  name: 'ScoreBar',
   props: {
     board: {
       id: String,

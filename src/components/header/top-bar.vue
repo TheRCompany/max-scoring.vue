@@ -20,7 +20,7 @@
 <script>
 import { dropdown } from '@/components/utils';
 export default {
-  name: 'top-bar',
+  name: 'TopBar',
   components: {
     dropdown,
   },

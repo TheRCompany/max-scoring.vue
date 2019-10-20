@@ -1,39 +1,41 @@
 <template>
   <div id="app" :class="{ dark: dark }">
-    <top-line></top-line>
+    <!-- <top-line></top-line>
     <top-bar :dark="dark" title="Max Scoring Quebec" @home="closeBoard()">
       <button @click="toggleDark()">Dark mode</button>
       <button>Settings</button>
     </top-bar>
 
-    <router-view></router-view>
+    <router-view></router-view> -->
+    test
   </div>
 </template>
 
 <script>
-import { topBar, topLine } from '@/components/header';
+// import { topBar, topLine } from '@/components/header';
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    topBar,
-    topLine,
+    // topBar,
+    // topLine,
   },
   computed: {
     dark: {
       get() {
-        return this.$store.state.dark;
+        // return this.$store.state.dark;
+        return true;
       },
     },
   },
-  methods: {
-    toggleDark() {
-      this.$store.commit('toggleDark');
-    },
-    closeBoard() {
-      this.$store.commit('closeBoard');
-    },
-  },
+  // methods: {
+  //   toggleDark() {
+  //     this.$store.commit('toggleDark');
+  //   },
+  //   closeBoard() {
+  //     this.$store.commit('closeBoard');
+  //   },
+  // },
 };
 </script>
 

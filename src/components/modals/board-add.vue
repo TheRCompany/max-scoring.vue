@@ -1,11 +1,11 @@
 <template>
-  <modal name="board-add" @before-close="reset" :adaptive="true">
+  <modal name="board-add" :adaptive="true" @before-close="reset">
     <div class="close" @click="hide()"></div>
     <form class="container" @submit.prevent="submit">
       <h2>Add a new board</h2>
       <div>
-        <input class="row" type="text" placeholder="Name your board" v-model="board.title" />
-        <textarea class="row" placeholder="Description" v-model="board.description"> </textarea>
+        <input v-model="board.title" class="row" type="text" placeholder="Name your board" />
+        <textarea v-model="board.description" class="row" placeholder="Description"> </textarea>
       </div>
       <button>Save</button>
     </form>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'board-add',
+  name: 'BoardAdd',
   data() {
     return {
       board: { title: '', description: '' },

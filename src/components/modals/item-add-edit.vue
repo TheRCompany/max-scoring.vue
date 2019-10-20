@@ -1,15 +1,15 @@
 <template>
-  <modal name="item-add-edit" @before-open="init" @before-close="reset" :adaptive="true">
+  <modal name="item-add-edit" :adaptive="true" @before-open="init" @before-close="reset">
     <div class="close" @click="hide()"></div>
     <form class="container" @submit.prevent="submit">
       <h2 v-if="!editMode">Add a new item</h2>
       <h2 v-if="editMode">Edit item</h2>
       <div>
         <div class="row">
-          <input type="text" placeholder="Title" v-model="item.title" />
-          <input type="number" min="0" max="100" placeholder="Score" v-model="item.score" />
+          <input v-model="item.title" type="text" placeholder="Title" />
+          <input v-model="item.score" type="number" min="0" max="100" placeholder="Score" />
         </div>
-        <textarea class="row" placeholder="Description" v-model="item.desc"> </textarea>
+        <textarea v-model="item.desc" class="row" placeholder="Description"> </textarea>
       </div>
       <button>Save</button>
     </form>
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: 'item-add-edit',
+  name: 'ItemAddEdit',
   data() {
     return {
       item: { title: '', desc: '', score: null },

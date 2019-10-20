@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'action-button',
+  name: 'ActionButton',
   props: {
     type: {
       type: String,

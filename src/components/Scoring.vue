@@ -1,8 +1,8 @@
 <template>
-  <div class="scoring" v-if="board">
+  <div v-if="board" class="scoring">
     <score-bar :dark="dark" :board="board"></score-bar>
 
-    <draggable class="list" v-model="list" group="score" @start="drag = true" @end="drag = false">
+    <draggable v-model="list" class="list" group="score" @start="drag = true" @end="drag = false">
       <div v-for="item in list" :key="item.id">
         <item :dark="dark" :item="item">
           <button @click="$modal.show('item-preview', { item })">

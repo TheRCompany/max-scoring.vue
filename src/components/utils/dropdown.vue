@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'dropdown',
+  name: 'Dropdown',
   props: {
     dark: Boolean,
     open: Boolean,

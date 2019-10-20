@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'Blankstate',
+  name: 'BlankState',
   props: {
     title: String,
     desc: String,

@@ -11,12 +11,12 @@
       </action-button>
     </blankstate>
 
-    <div class="container" v-else>
+    <div v-else class="container">
       <action-button @click="$modal.show('board-add')">
         {{ $t('board.add_board') }}
       </action-button>
       <div class="board-list">
-        <div class="board-tile" v-for="board in boards" :key="board.id" @click="selectActive(board)">
+        <div v-for="board in boards" :key="board.id" class="board-tile" @click="selectActive(board)">
           <h3>{{ board.title }}</h3>
           <p>{{ board.description }}</p>
         </div>

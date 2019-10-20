@@ -2,7 +2,7 @@
   <div class="topline">
     <router-link to="/" class="nav">Login/Logout</router-link>
     <span class="nav">{{ $t('top.language') }}:</span>
-    <select class="lang" v-model="$i18n.locale">
+    <select v-model="$i18n.locale" class="lang">
       <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
     </select>
   </div>
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'top-line',
+  name: 'TopLine',
   data() {
     return {
       langs: ['en', 'fr'],
