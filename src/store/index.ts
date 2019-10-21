@@ -8,13 +8,13 @@ import axios from 'axios';
 Vue.use(Vuex);
 Vue.use(VModal);
 
-interface Board {
+export interface Board {
   id: string;
   title: string;
   description: string;
 }
 
-interface ListItem {
+export interface ListItem {
   id: string;
   title: string;
   desc: string;
@@ -35,6 +35,7 @@ export class RootModule {
   @State()
   list: ListItem[] = [];
 
+  // board part
   @Action()
   async loadBoards(): Promise<void> {
     const data = await axios.get<Board[]>('/boards');
@@ -42,7 +43,7 @@ export class RootModule {
   }
 
   @Action()
-  async loadBoard(id: number): Promise<void> {
+  async loadBoard(id: string): Promise<void> {
     const data = await axios.get<Board>(`/boards/${id}`);
     this._setActiveBoard(data.data);
   }
@@ -54,7 +55,21 @@ export class RootModule {
     this.addBoard(data.data);
   }
 
-  // board part
+  @Action()
+  async setBoards(boards: Board[]): Promise<void> {
+    this._setBoards(boards);
+  }
+
+  @Action()
+  async setActiveBoard(board: Board): Promise<void> {
+    this._setActiveBoard(board);
+  }
+
+  @Action()
+  async closeBoard(): Promise<void> {
+    this._closeBoard();
+  }
+
   @Mutation()
   private _setBoards(boards: Board[]): void {
     this.boards = boards;
@@ -86,6 +101,21 @@ export class RootModule {
   }
 
   // scoring list part
+  @Action()
+  setList(list: ListItem[]): void {
+    this._setList(list);
+  }
+
+  @Action()
+  removeItem(item: ListItem): void {
+    this._removeItem(item);
+  }
+
+  @Action()
+  updateItemColor(item: ListItem): void {
+    this._updateItemColor(item);
+  }
+
   @Mutation()
   private _setList(list: ListItem[]): void {
     this.list = list;
@@ -117,6 +147,11 @@ export class RootModule {
   }
 
   // setting part
+  @Action()
+  async toggleDark(): Promise<void> {
+    this._toggleDark();
+  }
+
   @Mutation()
   private _toggleDark(): void {
     this.dark = !this.dark;

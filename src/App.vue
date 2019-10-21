@@ -1,42 +1,44 @@
 <template>
   <div id="app" :class="{ dark: dark }">
-    <!-- <top-line></top-line>
+    <top-line></top-line>
     <top-bar :dark="dark" title="Max Scoring Quebec" @home="closeBoard()">
       <button @click="toggleDark()">Dark mode</button>
       <button>Settings</button>
     </top-bar>
 
-    <router-view></router-view> -->
+    <router-view></router-view>
     test
   </div>
 </template>
 
-<script>
-// import { topBar, topLine } from '@/components/header';
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import { useStore } from 'vuex-simple';
+import { topBar, topLine } from '@/components/header';
+import { RootModule } from './store';
 
-export default {
+@Component({
   name: 'App',
   components: {
-    // topBar,
-    // topLine,
+    topBar,
+    topLine,
   },
-  computed: {
-    dark: {
-      get() {
-        // return this.$store.state.dark;
-        return true;
-      },
-    },
-  },
-  // methods: {
-  //   toggleDark() {
-  //     this.$store.commit('toggleDark');
-  //   },
-  //   closeBoard() {
-  //     this.$store.commit('closeBoard');
-  //   },
-  // },
-};
+})
+export default class App extends Vue {
+  private module = useStore<RootModule>(this.$store);
+
+  get dark(): boolean {
+    return this.module.dark;
+  }
+
+  toggleDark(): void {
+    this.module.toggleDark();
+  }
+
+  closeBoard(): void {
+    this.module.closeBoard();
+  }
+}
 </script>
 
 <style>

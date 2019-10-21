@@ -25,13 +25,17 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import { useStore } from 'vuex-simple';
 import draggable from 'vuedraggable';
+
 import { scoreBar } from '@/components/header';
 import { item } from '@/components/list';
 import { colorPicker, itemAddEdit, itemPreview } from '@/components/modals';
+import { Board, RootModule, ListItem } from '@/store';
 
-export default {
+@Component({
   name: 'Scoring',
   components: {
     draggable,
@@ -41,45 +45,46 @@ export default {
     itemPreview,
     scoreBar,
   },
-  computed: {
-    dark: {
-      get() {
-        return this.$store.state.dark;
-      },
-    },
-    board: {
-      get() {
-        return this.$store.state.activeBoard;
-      },
-    },
-    list: {
-      get() {
-        return this.$store.state.list;
-      },
-      set(value) {
-        this.$store.commit('setList', value);
-      },
-    },
-  },
-  mounted() {
+})
+export default class Scoring extends Vue {
+  private module = useStore<RootModule>(this.$store);
+
+  get dark(): boolean {
+    return this.module.dark;
+  }
+
+  get board(): Board | undefined {
+    return this.module.activeBoard;
+  }
+
+  get list(): ListItem[] {
+    return this.module.list;
+  }
+
+  set list(list: ListItem[]) {
+    this.module.setList(list);
+  }
+
+  mounted(): void {
     if (!this.board) {
       const id = this.$route.params.id;
-      this.$store.dispatch('loadBoard', id);
+      this.module.loadBoard(id);
     }
-  },
-  methods: {
-    addEditList(item, isEdit) {
-      const type = isEdit ? 'updateItem' : 'addItem';
-      this.$store.commit(type, item);
-    },
-    removeList(item) {
-      this.$store.commit('removeItem', item);
-    },
-    updateColor(item) {
-      this.$store.commit('updateItemColor', item);
-    },
-  },
-};
+  }
+
+  addEditList(item: ListItem, isEdit: boolean): void {
+    const type = isEdit ? 'updateItem' : 'addItem';
+    this.$store.commit(type, item);
+  }
+
+  removeList(item: ListItem): void {
+    this.module.removeItem(item);
+  }
+
+  updateColor(item: ListItem): void {
+    this.module.updateItemColor(item);
+  }
+}
 </script>
 
 <style scoped>

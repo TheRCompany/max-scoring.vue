@@ -29,45 +29,50 @@
   </div>
 </template>
 
-<script>
-import { actionButton, blankstate } from '@/components/utils';
-import { boardAdd } from '@/components/modals';
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import { useStore } from 'vuex-simple';
 
-export default {
-  name: 'Board',
+import { boardAdd } from '@/components/modals';
+import { actionButton, blankstate } from '@/components/utils';
+import { Board, RootModule } from '@/store';
+
+@Component({
+  name: 'Login',
   components: {
     actionButton,
     blankstate,
     boardAdd,
   },
-  computed: {
-    boards: {
-      get() {
-        return this.$store.state.boards;
-      },
-      set(value) {
-        this.$store.commit('setBoards', value);
-      },
-    },
-    dark: {
-      get() {
-        return this.$store.state.dark;
-      },
-    },
+  mounted(): void {
+    const module = useStore<RootModule>(this.$store);
+    module.loadBoards();
   },
-  mounted() {
-    this.$store.dispatch('loadBoards');
-  },
-  methods: {
-    create(board) {
-      this.$store.dispatch('addBoard', board);
-    },
-    selectActive(board) {
-      this.$store.commit('activeBoard', board);
-      this.$router.push({ name: 'scoring', params: { id: board.id } });
-    },
-  },
-};
+})
+export default class BoardComponent extends Vue {
+  private module = useStore<RootModule>(this.$store);
+
+  get boards(): Board[] {
+    return this.module.boards;
+  }
+
+  set boards(boards: Board[]) {
+    this.module.setBoards(boards);
+  }
+
+  get dark(): boolean {
+    return this.module.dark;
+  }
+
+  create(board: Board): void {
+    this.module.addBoard(board);
+  }
+
+  selectArchive(board: Board): void {
+    this.module.setActiveBoard(board);
+    this.$router.push({ name: 'scoring', params: { id: board.id } });
+  }
+}
 </script>
 
 <style scoped>
