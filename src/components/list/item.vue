@@ -27,7 +27,7 @@
 <script>
 import { dropdown } from '@/components/utils';
 export default {
-  name: 'item',
+  name: 'Item',
   components: {
     dropdown,
   },

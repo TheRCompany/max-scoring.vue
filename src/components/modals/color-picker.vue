@@ -1,11 +1,11 @@
 <template>
-  <modal name="color-picker" @before-open="beforeOpen" :adaptive="true">
+  <modal name="color-picker" :adaptive="true" @before-open="beforeOpen">
     <div class="close" @click="hide()"></div>
     <div class="container">
       <h2>Pick a color</h2>
       <div class="palette">
-        <div class="color" v-for="color in colors" :key="color" @click="select(color)">
-          <div class="preview" v-bind:style="{ background: color }"></div>
+        <div v-for="color in colors" :key="color" class="color" @click="select(color)">
+          <div class="preview" :style="{ background: color }"></div>
         </div>
       </div>
     </div>
@@ -14,7 +14,13 @@
 
 <script>
 export default {
-  name: 'color-picker',
+  name: 'ColorPicker',
+  data() {
+    return {
+      item: null,
+      colors: ['#d11141', '#f37735', '#ffc425', '#00b159', '#00aedb'],
+    };
+  },
   methods: {
     beforeOpen(event) {
       this.item = event.params.item;
@@ -26,12 +32,6 @@ export default {
       this.$emit('update', { ...this.item, color });
       this.hide();
     },
-  },
-  data() {
-    return {
-      item: null,
-      colors: ['#d11141', '#f37735', '#ffc425', '#00b159', '#00aedb'],
-    };
   },
 };
 </script>

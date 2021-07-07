@@ -7,34 +7,38 @@
     </top-bar>
 
     <router-view></router-view>
+    test
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import { useStore } from 'vuex-simple';
 import { topBar, topLine } from '@/components/header';
+import { RootModule } from './store';
 
-export default {
-  name: 'app',
+@Component({
+  name: 'App',
   components: {
     topBar,
     topLine,
   },
-  computed: {
-    dark: {
-      get() {
-        return this.$store.state.dark;
-      },
-    },
-  },
-  methods: {
-    toggleDark() {
-      this.$store.commit('toggleDark');
-    },
-    closeBoard() {
-      this.$store.commit('closeBoard');
-    },
-  },
-};
+})
+export default class App extends Vue {
+  private module = useStore<RootModule>(this.$store);
+
+  get dark(): boolean {
+    return this.module.dark;
+  }
+
+  toggleDark(): void {
+    this.module.toggleDark();
+  }
+
+  closeBoard(): void {
+    this.module.closeBoard();
+  }
+}
 </script>
 
 <style>
